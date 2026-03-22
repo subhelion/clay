@@ -1,6 +1,6 @@
 "use strict";
 
-import { canvas_get_context, canvas_make } from "../../../app/canvas.js"
+import { canvas_get_context, canvas_make } from "../app/canvas.js"
 
 // import { app_main } from "../app/main.js"
 
@@ -50,7 +50,7 @@ export function app_init_layer() {
 
 	app.file.layer.forEach( function( el, i ) {
 		let id =  "canvas-layer-" + i;
-		var canvasLayer = canvas_make();
+		var canvasLayer = canvas_make( app.file.width, app.file.height );
 		canvasLayer.id = id;
 		app.context.layer.push( canvas_get_context( canvasLayer ) );
 	});
@@ -87,9 +87,9 @@ export function app_init() {
 	app.tool = tool_all.pen_outline;
 	app.ui.canvas = new ui_canvas( document.getElementById( "canvas" ) );
 
-	app.context.render = canvas_get_context( canvas_make() );
-	app.context.stroke = canvas_get_context( canvas_make() );
-	app.context.erase  = canvas_get_context( canvas_make() );
+	app.context.render = canvas_get_context( canvas_make( app.file.width, app.file.height ) );
+	app.context.stroke = canvas_get_context( canvas_make( app.file.width, app.file.height ) );
+	app.context.erase  = canvas_get_context( canvas_make( app.file.width, app.file.height ) );
 
 	var canvasPreview = document.getElementById( "preview" );
 	app.context.preview = canvas_get_context( canvasPreview );
@@ -103,20 +103,6 @@ export function app_init() {
 	}
 
 	window.addEventListener( "resize", app_resize );
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	const fps = 60;
 

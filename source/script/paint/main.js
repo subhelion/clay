@@ -28,7 +28,6 @@ import { ui_palette }    from "./main/ui/palette.js";
 import { storage }       from "./app/session.js";
 
 new tab_list( document.getElementById( "menu-tab" ) );
-new tab_list( document.getElementById( "main-tab" ) );
 new tab_list( document.getElementById( "tray-tab" ) );
 
 app.ui.palette   = new ui_palette();
@@ -56,3 +55,24 @@ async function get_keyboard_layout() {
 }
 
 get_keyboard_layout();
+
+
+document.getElementById( "a-file-new" ).onclick = function( event ) {
+};
+
+document.getElementById( "a-file-open" ).onclick = function( event ) {
+};
+
+document.getElementById( "a-file-import" ).onclick = function( event ) {
+};
+
+document.getElementById( "a-file-export" ).onclick = function( event ) {
+	let el = document.createElement( "a" );
+	el.href = app.context.render.canvas.toDataURL( "image/png" ).replace( "image/png", "application/octet-stream" );
+	el.download = "untitled.png";
+	el.click();
+};
+
+document.getElementById( "a-file-new-ok" ).onclick = function( event ) {
+	document.body.classList.remove( "file-none" );
+};

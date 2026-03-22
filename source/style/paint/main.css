@@ -558,3 +558,67 @@ page#page-history > panel-body {
 body.focus menu tl {
 	display: none;
 }
+
+
+
+
+
+div.canvas {
+	background-attachment: fixed;
+}
+
+main-body {
+	overflow: hidden;
+}
+
+div.canvas {
+	overflow: auto;
+}
+
+
+
+body.file-none menu#menu,
+body.file-none main,
+body.file-none side,
+body.file-none top traffic {
+	display: none;
+}
+
+body:not( .file-none ) menu#menu-none {
+	display: none;
+}
+
+menu > page > p {
+	width: 260px;
+	overflow: hidden;
+}
+
+menu > page > p > label + span {
+	width: 0;
+}
+
+button {
+	padding: 0 8px;
+	line-height: 32px;
+	margin-left: 2px;
+}
+
+button.ok,
+button.cancel {
+	background: #07D;
+	color: #FFF;
+	float: right;
+}
+
+button.ok:hover {
+	background: #000;
+}
+
+button.cancel:hover {
+	background: #E81123;
+}
+
+button.ok:hover:active,
+button.cancel:hover:active {
+	transform: scale( 0.96 );
+}

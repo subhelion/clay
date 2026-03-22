@@ -9,11 +9,6 @@ document.getElementById( "menu" ).addEventListener( "wheel", function( event ) {
 	event.stopPropagation();
 });
 
-document.getElementById( "a-export" ).addEventListener( "click", function( event ) {
-	document.getElementById( "download" ).href = app.context.render.canvas.toDataURL( "image/png" ).replace( "image/png", "application/octet-stream" );
-	document.getElementById( "download" ).click();
-});
-
 function replay() {
 	app.toRewind = true;
 	app.replay = true;

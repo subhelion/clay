@@ -1,5 +1,6 @@
 "use strict";
 
+import { app } from "./app.js";
 import { rom_draw } from "./rom.js";
 
 var el_drop = document.getElementById( "drop" );

@@ -15,9 +15,9 @@ export function canvas_get_context( canvas, opt = null ) {
 	return context;
 }
 
-export function canvas_make() {
+export function canvas_make( width, height ) {
 	let el = document.createElement( "canvas" );
-	el.width  = app.file.width;
-	el.height = app.file.height;
+	el.width  = width;
+	el.height = height;
 	return el
 }
