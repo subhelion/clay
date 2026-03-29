@@ -23,7 +23,7 @@ import { update_layer_mode } from "./main/ui/layout.js";
 import { update_tool_mode }  from "./main/ui/layout.js";
 import { tool_init }         from "./main/ui/tool.js";
 
-import { ui_top }        from "../app/top.js";
+import { app_top }       from "../app/top.js";
 import { app_menu }      from "./main/ui/menu.js";
 import { ui_list_layer } from "./main/ui/layer.js";
 import { ui_palette }    from "./main/ui/palette.js";
@@ -38,7 +38,7 @@ app.ui = {
 	palette
 };
 
-ui_top       .call( app.ui.top,     app );
+app_top( app );
 app_menu( app );
 ui_palette   .call( app.ui.palette, app );
 ui_list_layer.call( app.ui.layer,   app );

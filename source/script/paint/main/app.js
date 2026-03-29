@@ -1,37 +1,34 @@
 "use strict";
 
-export let app = {
-	mouse : null,
-	stroke  : [],
+export let app = {};
+app.mouse  = null;
+app.stroke = [];
 
-	drawing : false,
+app.drawing = false,
 
-	toRepaint :  true,
-	toBake    : false,
-	firstRender : true,
+app.toRepaint   = true;
+app.toBake      = false;
+app.firstRender = true;
 
-	file : null,
-	tool : null,
+app.file = null;
+app.tool = null;
 
-	ui : {
-		canvas : null,
-		palette : null,
-	},
+app.ui = {};
+app.ui.canvas  = null;
+app.ui.palette = null;
 
-	context : {
-		display : null,
-		render  : null,
-		stroke  : null,
-		erase   : null,
-		layer   : [],
-		preview : null,
-	},
+app.context = {};
+app.context.display = null;
+app.context.render  = null;
+app.context.stroke  = null;
+app.context.erase   = null;
+app.context.layer   = [];
+app.context.preview = null;
 
-	layer_mode_index   : 1,
-	layer_active_index : 2,
+app.layer_mode_index   = 1;
+app.layer_active_index = 2;
 
-	thumbs : [],
-};
+app.thumbs = [];
 
 app.file = {
 	width: 64,
@@ -49,4 +46,4 @@ app.file = {
 
 		{ type : "canvas" },
 	]
-}
+};

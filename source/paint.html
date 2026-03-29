@@ -40,7 +40,7 @@
 				<li><a disabled id=a-file-close  >Close</a>
 			</ul>
 
-		<li><a disabled id=a-edit>Edit</a><ul>
+		<li><a id=a-edit disabled>Edit</a><ul>
 			<li><a disabled>Undo</a>
 			<li><a disabled>Redo</a>
 			<li><a disabled>Cut</a>
@@ -52,6 +52,7 @@
 		<li><a disabled>View</a>
 
 		<li><a>Help</a><ul>
+			<li><a>Documentation</a>
 			<li><a>About</a>
 		</ul>
 	</ul>
@@ -78,8 +79,8 @@
 				<h>Format</h>
 
 				<ul class=tree>
-					<li class=active ><a>None</a>
-					<li disabled     ><a>New Format</a>
+					<li class=active><a>None</a>
+					<li             ><a>New Format</a>
 				</ul>
 			</page>
 
@@ -95,7 +96,6 @@
 					<label>Width </label><input type=number value=64 id=file-new-size-x>
 					<label>Height</label><input type=number value=64 id=file-new-size-y>
 				</p>
-
 
 				<wheel>
 					<canvas width=256 height=256>
@@ -124,16 +124,8 @@
 
 	<page id=page-format-new>
 		<h>File > New > Format</h>
-
 		<input type=text placeholder=Untitled>
-
-		<h>Basis</h>
-
-		<ul class=tree>
-			<li         ><a>Raster</a>
-			<li disabled><a>Vector</a>
-		</ul>
-
+		<label><input type=checkbox>Size</label>
 		<div class=clear><button class=cancel>Cancel</button><button class=ok>Ok</button></div>
 	</page>
 
@@ -193,13 +185,16 @@
 				<label>Type</label><a id=a-layer-type>Canvas</a>
 
 				<select hidden disabled id=select-layer-type>
+
+					<option value=grid  >Grid</option>
+					<option value=  >Stack</option>
+
+					<option value=trim  >Trim</option>
+
 					<option value=canvas>Canvas</option>
 					<option value=fill  >Fill</option>
-					<option value=grid  >Grid</option>
-					<option value=list  >List</option>
 					<option value=map   >Map</option>
-					<option value=trim  >Trim</option>
-					<option value=vector>Vector</option>
+					<option value=list  >List</option>
 					<option value=new hidden>New</option>
 				</select>
 
@@ -255,7 +250,7 @@
 
 	<page id=page-file>
 		<p>
-			<label>Format</label><span>Raster</span>
+			<label>Format</label><span>None</span>
 			<label>Size</label><span>64 x 64</span>
 		</p>
 	</page>

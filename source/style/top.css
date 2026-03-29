@@ -76,3 +76,11 @@ top > t {
 top a {
 	padding: 0 8px;
 }
+
+body.file-none top {
+	border-bottom: 0;
+}
+
+top > ul > li > ul {
+	/* border-top: 0; */
+}

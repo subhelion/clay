@@ -1,11 +1,15 @@
 "use strict";
 
-export function ui_top() {
-	let self = this;
+export function app_top( app ) {
+	app.top = {};
+	let el = document.getElementById( "top-menu" );
 
-	this.el = document.getElementById( "top-menu" );
+	app.top.collapse = function() {
+		$$( "top > ul > li.active" ).forEach( el => el.classList.remove( "active" ) );
+		document.body.classList.remove( "app-overlay-show" )
+	};
 
-	this.el.addEventListener( "mousedown", function( event ) {
+	el.addEventListener( "mousedown", function( event ) {
 		if ( event.target.closest( "top > ul > li > a:not([disabled])" ) ) {
 			document.body.classList.toggle( "app-overlay-show" );
 			$$( "top > ul > li.active" ).forEach( el => el.classList.remove( "active" ) );
@@ -18,14 +22,14 @@ export function ui_top() {
 		}
 	});
 
-	this.el.addEventListener( "mouseup", function( event ) {
+	el.addEventListener( "mouseup", function( event ) {
 		if ( event.target.closest( "top > ul > li > ul > li > a:not([disabled])" ) ) {
-			self.collapse();
+			app.top.collapse();
 			event.stopPropagation();
 		}
 	});
 
-	this.el.addEventListener( "mouseover", function( event ) {
+	el.addEventListener( "mouseover", function( event ) {
 		let el = event.target.closest( "top > ul > li > a:not([disabled])" ); if ( ! el ) return;
 		if ( document.body.classList.contains( "app-overlay-show" ) ) {
 			$$( "top > ul > li.active" ).forEach( el => el.classList.remove( "active" ) );
@@ -33,14 +37,9 @@ export function ui_top() {
 		}
 	});
 
-	this.collapse = function() {
-		$$( "top > ul > li.active" ).forEach( el => el.classList.remove( "active" ) );
-		document.body.classList.remove( "app-overlay-show" )
-	};
-
 	document.body.addEventListener( "mousedown", function( event ) {
 		if ( document.body.classList.contains( "app-overlay-show" ) ) {
-			self.collapse();
+			app.top.collapse();
 		}
 	});
 }
