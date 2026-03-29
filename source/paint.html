@@ -37,21 +37,23 @@
 				<li><a disabled id=a-file-save-as>Save As</a>
 				<li><a          id=a-file-import >Import</a>
 				<li><a disabled id=a-file-export >Export</a>
+				<li><a disabled id=a-file-close  >Close</a>
 			</ul>
 
-		<li>
-			<a disabled>Edit</a>
+		<li><a disabled id=a-edit>Edit</a><ul>
+			<li><a disabled>Undo</a>
+			<li><a disabled>Redo</a>
+			<li><a disabled>Cut</a>
+			<li><a disabled>Copy</a>
+			<li><a disabled>Paste</a>
+			<li><a disabled>Delete</a>
+		</ul>
 
-			<ul>
-				<li><a disabled>Undo</a>
-				<li><a disabled>Redo</a>
-				<li><a disabled>Cut</a>
-				<li><a disabled>Copy</a>
-				<li><a disabled>Paste</a>
-				<li><a disabled>Delete</a>
-			</ul>
 		<li><a disabled>View</a>
-		<li><a disabled>Help</a>
+
+		<li><a>Help</a><ul>
+			<li><a>About</a>
+		</ul>
 	</ul>
 
 	<traffic>
@@ -76,16 +78,14 @@
 				<h>Format</h>
 
 				<ul class=tree>
-					<li disabled     ><a>[_] Raster-based</a>
-					<li class=active ><a>Raster</a>
-					<li disabled     ><a>Vector</a>
+					<li class=active ><a>None</a>
 					<li disabled     ><a>New Format</a>
 				</ul>
 			</page>
 
-			<page id=page-file-new-raster>
+			<page id=page-file-new-none>
 				<p>
-					<label>Format</label><span><a id=a-file-new-format>Raster</a></span>
+					<label>Format</label><span><a id=a-file-new-format>None</a></span>
 					<!-- <h><t>Size</t><a>Edit</a></h> -->
 
 					<!-- <label>Aspect ratio</label><span id=l-aspect>1:1</span>
@@ -160,6 +160,8 @@
 			<label>Export</label><a>Image</a>
 			<label>Format</label><a>PNG</a>
 		</p>
+
+		<div class=clear><button class=cancel>Cancel</button><button class=ok id=a-file-export-ok>Ok</button></div>
 	</page>
 </menu>
 
