@@ -20,19 +20,15 @@ h > div:first-child {
 	padding: 0 16px;
 }
 
-h > a:not( [disabled] ):hover,
-h > a:not( [disabled] ):active {
-	background: #000;
-	color: #FFF;
-
-	opacity: 1.0;
-}
-
-h > a:not( [disabled] ):active {
-	transform: scale( 0.95 );
-}
-
 h > a {
-	padding: 0 8px;
+	/* padding: 0 8px; */
+	margin-right: 8px;
 	/* line-height: 30px; */
+	color: var( --color-link );
+	cursor: pointer;
+}
+
+h > a:hover,
+h > a:active {
+	text-decoration: underline;
 }

@@ -20,11 +20,11 @@ export function ui_list_layer( el ) {
 		app.toRepaint = true;
 
 		if ( this.el.children[i].children[0].dataset.label == "new" ) {
-			document.getElementById( "label-layer-type" ).removeAttribute( "disabled" );
+			document.getElementById( "a-layer-type" ).removeAttribute( "disabled" );
 			document.getElementById( "select-layer-type" ).removeAttribute( "disabled" );
 			document.getElementById( "select-layer-type" ).value = "new";
 		} else {
-			document.getElementById( "label-layer-type" ).setAttribute( "disabled", "" );
+			document.getElementById( "a-layer-type" ).setAttribute( "disabled", "" );
 			document.getElementById( "select-layer-type" ).setAttribute( "disabled", "" );
 			document.getElementById( "select-layer-type" ).value = this.el.children[i].children[0].dataset.label;
 		}

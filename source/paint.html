@@ -31,16 +31,16 @@
 			<a>File</a>
 
 			<ul>
-				<li><a id=a-file-new    >New</a>
-				<li><a id=a-file-open   >Open</a>
-				<li><a id=a-file-save   >Save</a>
-				<li><a id=a-file-save-as>Save As</a>
-				<li><a id=a-file-import >Import</a>
-				<li><a id=a-file-export >Export</a>
+				<li><a          id=a-file-new    >New</a>
+				<li><a          id=a-file-open   >Open</a>
+				<li><a disabled id=a-file-save   >Save</a>
+				<li><a disabled id=a-file-save-as>Save As</a>
+				<li><a          id=a-file-import >Import</a>
+				<li><a disabled id=a-file-export >Export</a>
 			</ul>
 
 		<li>
-			<a>Edit</a>
+			<a disabled>Edit</a>
 
 			<ul>
 				<li><a disabled>Undo</a>
@@ -50,7 +50,7 @@
 				<li><a disabled>Paste</a>
 				<li><a disabled>Delete</a>
 			</ul>
-		<li hidden><a>View</a>
+		<li><a disabled>View</a>
 		<li><a disabled>Help</a>
 	</ul>
 
@@ -66,101 +66,196 @@
 </top>
 
 <menu id=menu-none>
-	<h>File</h>
+	<page id=page-file-new>
+		<h>File > New</h>
 
-	<page>
+		<input type=text placeholder=Untitled>
+
+		<pane>
+			<page id=page-file-new-format class=next>
+				<h>Format</h>
+
+				<ul class=tree>
+					<li disabled     ><a>[_] Raster-based</a>
+					<li class=active ><a>Raster</a>
+					<li disabled     ><a>Vector</a>
+					<li disabled     ><a>New Format</a>
+				</ul>
+			</page>
+
+			<page id=page-file-new-raster>
+				<p>
+					<label>Format</label><span><a id=a-file-new-format>Raster</a></span>
+					<!-- <h><t>Size</t><a>Edit</a></h> -->
+
+					<!-- <label>Aspect ratio</label><span id=l-aspect>1:1</span>
+					<input id=i-aspect type=range min=0>
+					<label>Minor</label><input type=number value=64 id=file-new-size-x> -->
+
+					<label>Width </label><input type=number value=64 id=file-new-size-x>
+					<label>Height</label><input type=number value=64 id=file-new-size-y>
+				</p>
+
+
+				<wheel>
+					<canvas width=256 height=256>
+				</wheel>
+			</page>
+		</pane>
+
+
+
+
+		<script>
+// 			let aspects = [ "3:7", "1:2", "9:17", "9:16", "3:5", "5:7", "2:3", "3:4", "4:5", "1:1", "5:4", "4:3", "3:2", "8:5", "5:3", "16:9", "17:9", "2:1", "7:3" ];
+//
+// 			let el_aspect = document.getElementById( "i-aspect" );
+//
+// 			el_aspect.max   = aspects.length - 1;
+// 			el_aspect.value = Math.floor( ( aspects.length - 1 ) / 2 );
+//
+// 			el_aspect.oninput = function() {
+// 				document.getElementById( "l-aspect" ).innerText = aspects[ el_aspect.value ];
+// 			}
+		</script>
+
+		<div class=clear><button id=a-file-new-cancel class=cancel>Cancel</button><button id=a-file-new-ok class=ok>Ok</button></div>
+	</page>
+
+	<page id=page-format-new>
+		<h>File > New > Format</h>
+
+		<input type=text placeholder=Untitled>
+
+		<h>Basis</h>
+
+		<ul class=tree>
+			<li         ><a>Raster</a>
+			<li disabled><a>Vector</a>
+		</ul>
+
+		<div class=clear><button class=cancel>Cancel</button><button class=ok>Ok</button></div>
+	</page>
+
+	<page id=page-file-open>
+		<h>File > Open</h>
+
+		<ul class=file id=file-open-list>
+			<li><a><img>Untitled</a>
+		</ul>
+	</page>
+
+	<page id=page-file-save>
+		<h>File > Save As</h>
+	</page>
+
+	<page id=page-file-import>
+		<h>File > Import</h>
+	</page>
+
+	<page id=page-file-export>
+		<h>File > Export</h>
+
 		<p>
-			<label>Format</label><select>
-				<option>Raster</option>
-				<option>Vector</option>
-			</select>
-
-			<label>Size</label><span><input type=number value=64> x <input type=number value=64></span>
+			<label>Export</label><a>Image</a>
+			<label>Format</label><a>PNG</a>
 		</p>
-
-		<button class=cancel>Cancel</button><button id=a-file-new-ok class=ok>Ok</button>
 	</page>
 </menu>
 
 <menu id=menu>
 	<tl id=menu-tab>
-		<li active><a>File</a></li>
-		<li><a>History</a></li>
+		<li active><a>Edit</a></li>
+		<li       ><a>File</a></li>
+		<li       ><a>History</a></li>
 	</tl>
 
-	<page id=page-file active>
+	<page id=page-edit active>
+		<pane>
+			<h><t>Layers</t><a>Edit</a></h>
+
+			<ul id=layer class=layer-list></ul>
+
+			<ul class=button-list>
+				<li><a id=a-layer-insert        >Insert</a>
+				<li><a id=a-layer-dupe          >Dupe</a>
+				<li><a id=a-layer-merge disabled>Merge</a>
+				<li><a id=a-layer-delete        >Delete</a>
+			</ul>
+		</pane>
+
+		<pane>
+			<canvas id=preview width=256 height=256></canvas>
+
+			<p>
+				<label>Type</label><a id=a-layer-type>Canvas</a>
+
+				<select hidden disabled id=select-layer-type>
+					<option value=canvas>Canvas</option>
+					<option value=fill  >Fill</option>
+					<option value=grid  >Grid</option>
+					<option value=list  >List</option>
+					<option value=map   >Map</option>
+					<option value=trim  >Trim</option>
+					<option value=vector>Vector</option>
+					<option value=new hidden>New</option>
+				</select>
+
+				<label>Blend</label><a id=a-layer-blend>Normal</a>
+
+
+				<select hidden>
+					<option>Normal</option>
+				</select>
+
+				<label>Opacity</label><span>100%</span><input type=range>
+			</p>
+		</pane>
+
+		<pane>
+			<h><t>Tools (QWER)</t><a disabled>Edit</a></h>
+
+			<ul class=tool-list>
+				<li class=active><a data-name=Select></a>
+				<li             ><a data-name=Move  ></a>
+				<li             ><a data-name=Draw  ></a>
+				<li             ><a data-name=Fill  ></a>
+			</ul>
+
+			<ul class=tool-list>
+				<li class=mod><a disabled data-name=Pick></span></a>
+				<li class=mod><a disabled data-name=Anchor></a>
+			</ul>
+
+			<ul class=tool-list style=display:none>
+				<li><a disabled>Undo</a>
+				<li><a>Cut</a>
+				<li><a>Copy</a>
+				<li><a>Paste</a>
+				<li><a disabled>Redo</a>
+				<li><a disabled>Eraser</a>
+			</ul>
+		</pane>
+
+		<pane>
+			<p id=page-tool-select></p>
+			<p id=page-tool-move></p>
+
+			<p id=page-tool-draw>
+				<label>Brush shape</label><a>Square</a>
+
+				<select hidden><option>Circle</option><option selected>Square</option></select>
+
+				<label>Brush size</label><input type=range min=0 max=8>
+			</p>
+		</pane>
+	</page>
+
+	<page id=page-file>
 		<p>
 			<label>Format</label><span>Raster</span>
 			<label>Size</label><span>64 x 64</span>
 		</p>
-
-		<h><t>Layers</t><a>Edit</a></h>
-
-		<ul id=layer class=layer-list></ul>
-
-		<ul class=button-list>
-			<li><a id=a-layer-insert        >Insert</a>
-			<li><a id=a-layer-dupe          >Dupe</a>
-			<li><a id=a-layer-merge disabled>Merge</a>
-			<li><a id=a-layer-delete        >Delete</a>
-		</ul>
-
-		<h></h>
-
-		<canvas id=preview width=256 height=256></canvas>
-
-		<p>
-			<label disabled id=label-layer-type>Type</label><select disabled id=select-layer-type>
-				<option value=canvas>Canvas</option>
-				<option value=fill  >Fill</option>
-				<option value=grid  >Grid</option>
-				<option value=list  >List</option>
-				<option value=map   >Map</option>
-				<option value=trim  >Trim</option>
-				<option value=vector>Vector</option>
-				<option value=new hidden>New</option>
-			</select>
-
-			<label>Blend</label><select>
-				<option>Normal</option>
-			</select>
-
-			<label>Opacity</label><span>100%</span><input type=range>
-		</p>
-
-		<h><t>Tools (QWER)</t><a disabled>Edit</a></h>
-
-		<ul class=tool-list>
-			<li class=active><a data-name=Select></a>
-			<li             ><a data-name=Move  ></a>
-			<li             ><a data-name=Draw  ></a>
-			<li             ><a data-name=Fill  ></a>
-		</ul>
-
-		<ul class=tool-list>
-			<li class=mod><a disabled data-name=Pick></span></a>
-			<li class=mod><a disabled data-name=Anchor></a>
-		</ul>
-
-		<ul class=tool-list style=display:none>
-			<li><a disabled>Undo</a>
-			<li><a>Cut</a>
-			<li><a>Copy</a>
-			<li><a>Paste</a>
-			<li><a disabled>Redo</a>
-			<li><a disabled>Eraser</a>
-		</ul>
-
-		<h></h>
-
-		<p id=page-tool-select></p>
-		<p id=page-tool-move></p>
-
-		<p id=page-tool-draw>
-			<label>Brush shape</label><select><option>Circle</option><option selected>Square</option></select>
-			<label>Brush size</label><input type=range min=0 max=8>
-		</p>
-
 	</page>
 
 	<page id=page-history>
@@ -196,8 +291,6 @@
 		</h>
 	</tray>
 </main>
-
-
 
 <side id=side>
 	<page id=page-palette>

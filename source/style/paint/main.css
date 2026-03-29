@@ -36,7 +36,7 @@ main {
 
 
 a {
-    padding: 0 8px;
+    /* padding: 0 8px; */
 }
 
 h {
@@ -69,6 +69,10 @@ h[data-label]::after {
 }
 
 
+
+tl > li > a {
+	padding: 0 8px;
+}
 
 
 
@@ -153,7 +157,7 @@ tl > li[active]::after {
 	height: 4px;
 	background: #F6E;
 	position:absolute;
-	bottom: -1px;
+	bottom: 0
 }
 
 
@@ -177,6 +181,9 @@ tl > li:not([active]) > a:hover {
 tl > li[active] > a,
 tl > li:not([active]) > a:active {
 	background: #FFD1FA;
+}
+h > t {
+	padding-left: 8px;
 }
 
 
@@ -278,9 +285,9 @@ main-body {
 }
 
 
-menu > h,
-menu > page > h,
-side > page > h {
+menu h,
+menu page h,
+side page h {
 	padding-left: 8px;
 }
 
@@ -380,33 +387,34 @@ side page {
 	width: 260px;
 }
 
-menu h:not(:first-child),
+/* menu h:not(:first-child), */
+menu pane + pane,
 menu page + page,
 side page + page {
 	border-top: 1px solid var( --color-border );
 }
 
-menu > page > p {
+menu page p {
 	padding: 0 8px;
 	text-wrap: nowrap;
 }
 
-menu > page > p {
+menu page p {
 	display: grid;
 	grid-template-columns: min-content auto;
 	line-height: 32px;
 	margin-bottom: 8px;
 }
 
-menu > page > p > label {
+menu page p > label {
 	margin-right: 8px;
 }
 
-menu > page > p > span {
+menu page p > span {
 	text-align: right;
 }
 
-menu > page > p > input[type=range] {
+menu page p > input[type=range] {
 	grid-column: 1 / span 2;
 }
 
@@ -521,14 +529,6 @@ body.focus page#page-file > p:first-child {
 	display: none;
 }
 
-
-
-
-
-menu > page > p:first-child {
-	border-top: 1px solid var( --color-border );
-}
-
 tray {
 	height: 320px;
 	border-top: 1px solid var( --color-border );
@@ -577,23 +577,29 @@ div.canvas {
 
 
 
-body.file-none menu#menu,
-body.file-none main,
-body.file-none side,
-body.file-none top traffic {
-	display: none;
+
+
+
+html {
+	/* --color-link: #07D; */
+	--color-link: #F6E;
 }
 
-body:not( .file-none ) menu#menu-none {
-	display: none;
-}
 
-menu > page > p {
-	width: 260px;
+
+
+
+
+
+
+
+
+
+menu page p {
 	overflow: hidden;
 }
 
-menu > page > p > label + span {
+menu page p > label + span {
 	width: 0;
 }
 
@@ -605,20 +611,288 @@ button {
 
 button.ok,
 button.cancel {
-	background: #07D;
+	background: var( --color-link );
 	color: #FFF;
 	float: right;
 }
 
-button.ok:hover {
+button.ok:hover,
+button.cancel:hover {
 	background: #000;
 }
 
 button.cancel:hover {
-	background: #E81123;
+	/* background: #E81123; */
 }
 
 button.ok:hover:active,
 button.cancel:hover:active {
 	transform: scale( 0.96 );
+}
+
+
+
+
+
+menu#menu-none {
+	margin: auto;
+}
+
+menu page p {
+	line-height: 40px;
+	padding-right: 0;
+}
+
+
+menu#menu-none page {
+	padding-right: 8px;
+}
+
+
+
+
+input[type=number] {
+	text-align: right;
+	border: 1px solid var( --color-link );
+	margin-top: 4px;
+	line-height: 32px;
+	height: 32px;
+}
+
+menu page h,
+menu page p {
+	padding-left: 0;
+}
+
+menu page {
+	padding-left: 8px;
+}
+
+input[type=text] {
+	line-height: 32px;
+	border: 1px solid var( --color-link );
+	margin: 4px 0;
+	display: block;
+	width: 100%;
+	padding: 0 8px;
+	height: 32px;
+}
+
+input,
+input::placeholder {
+	color: var( --color-link );
+}
+
+input[type=range] {
+	height: 32px;
+	margin-bottom: 8px;
+}
+
+select {
+	border: 1px solid;
+	height: 32px;
+	margin-top: 4px;
+	line-height: 32px;
+}
+
+
+select:not([disabled]) {
+	border-color: var( --color-link );
+	color: var( --color-link );
+}
+
+::selection {
+	background: var( --color-link );
+	color: #FFF;
+}
+
+body.app-overlay-show > *:not(top) {
+	opacity: 0.2;
+	/* filter: grayscale(1) blur(2px); */
+	filter: grayscale(1);
+	/* transition: filter 0.1s linear; */
+	pointer-events: none;
+}
+
+error {
+	color: #AAA;
+	display: block;
+	text-align: center;
+	line-height: 64px;
+
+}
+
+menu > page#page-file-open {
+	display: flex;
+	flex-direction: column;
+}
+
+ul.tree {
+	line-height: 40px;
+	min-height: 320px;
+    max-height: 320px;
+    overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+page#page-file-new ul > li[disabled] > a {
+
+}
+
+ul.tree > li > a:hover {
+	background: var(--color-bg-hover);
+}
+
+ul.tree > li > a:active {
+	background: var(--color-bg-active);
+}
+
+*[disabled] {
+	filter: grayscale(1);
+	color: #AAA !important;
+}
+
+ul.tree > li > a {
+	margin: 0 -8px;
+	color: var( --color-link );
+}
+
+div.clear::after {
+	content: "";
+	display: block;
+	clear: both;
+	margin-bottom: 8px;
+}
+
+menu input + h:not(:first-child) {
+	border-top: 0;
+}
+
+menu#menu-none > page {
+	display: none;
+}
+
+menu#menu-none > page {
+	display: none;
+}
+
+input, ul.tree {
+	font-family: 'consolas', 'Courier New', Courier, monospace
+}
+
+body.file-open menu#menu-none > page#page-file-open {
+	display: block;
+}
+
+body.file-import menu#menu-none > page#page-file-import {
+	display: block;
+}
+
+menu#menu-none > page {
+	border-top: 0;
+}
+
+ul.tree {
+	margin-left: -8px;
+}
+
+ul.tree > li > a {
+	padding-left: 16px;
+}
+
+label + a,
+label + span > a {
+	color: var( --color-link );
+	cursor: pointer;
+}
+
+label + a:hover,
+label + span > a:hover {
+	text-decoration: underline;
+}
+
+
+page {
+	display: block;
+	transition: transform 0.2s ease-in, opacity 0.2s linear;
+	opacity: 1.0;
+}
+
+page.prev {
+	transform: translate( -32px, 0 ) !important;
+	opacity: 0.0;
+	pointer-events: none;
+}
+
+page.next {
+	transform: translate( 32px, 0 ) !important;
+	opacity: 0.0;
+	pointer-events: none;
+}
+
+pane {
+	display: block;
+	position: relative;
+	/* height: 320px; */
+	flex-grow: 1;
+	margin: 0 -8px;
+}
+
+pane > page {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 260px;
+	border-top: 0 !important;
+}
+
+pane > page p:first-child {
+	border-top: 0;
+}
+
+menu page p {
+	margin-bottom: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+body:not( .file-edit ) menu#menu,
+body:not( .file-edit ) main,
+body:not( .file-edit ) side,
+body:not( .file-edit ) top traffic {
+	display: none;
+}
+
+body.file-edit menu#menu-none {
+	display: none;
+}
+
+body.file-none menu#menu-none > page {
+	display: none;
+}
+
+body.file-new menu#menu-none > page#page-file-new {
+	display: block;
+	display: flex;
+	flex-direction: column;
+}
+
+pane {
+	width: 260px;
+}
+
+menu page p {
+	padding: 0 8px;
+}
+
+:not(:root):fullscreen::backdrop {
+    background: #FFF;
 }
